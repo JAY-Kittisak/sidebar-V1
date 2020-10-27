@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import * as s from './Sidebar.styles';
 
 const Sidebar = props => {
   const {
     backgroundImage = '',
-    SidebarHeader = '', 
+    sidebarHeader = {
+      fullName: '',
+      shortName: ''
+    }, 
     menuItems = [],
     fonts = {
       header: '',
@@ -12,19 +15,48 @@ const Sidebar = props => {
     }
   } = props;
 
+
+  
+  // State
+  const [selected, setSelectedMenuItem] = useState(menuItems[0].name);
+  const [isSidebarOpen, setSidebarState] = useState(true);
+  const [header, setHeader] = useState(sidebarHeader.fullName);
+
+  //Effect
+  useEffect(() => {
+    isSidebarOpen ? setHeader(sidebarHeader.fullName) : setHeader(sidebarHeader.shortName);
+  }, [isSidebarOpen, sidebarHeader])
+
+  const handleMenuItemClick = name => {
+    setSelectedMenuItem(name)
+  }
+
+
   const menuItemsJSX = menuItems.map((item, index) => {
+    const isItemSelected = selected === item.name;
+
     return (
-      <s.MenuItem key = {index} font={fonts.header}>
+      <s.MenuItem 
+      key = {index} 
+      font={fonts.menu}
+      selected={isItemSelected}
+      onClick={() => handleMenuItemClick(item.name)}
+      >
         <s.Icon src={item.icon} />
         <s.Text>{item.name}</s.Text>
       </s.MenuItem>
     )
   })
+//ทดสอบ ปุ่ม ปิดเปิด Sidebar
+  //console.log(`Is sidebar open ${isSidebarOpen}`)
 
   return (
-    <s.SidebarContainer backgroundImage={backgroundImage}>
-      <s.SidebarHeader font={fonts.menu}>{SidebarHeader}</s.SidebarHeader>
+    <s.SidebarContainer backgroundImage={backgroundImage} isSidebarOpen={isSidebarOpen}>
+      <s.SidebarHeader font={fonts.header}>{header}</s.SidebarHeader>
       <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
+      <s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
+        <s.Toggler />
+      </s.TogglerContainer>
     </s.SidebarContainer>
   )
 }

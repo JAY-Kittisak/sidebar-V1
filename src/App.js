@@ -8,7 +8,10 @@ import MainView from './components/MainView/Services/MainView'
 
 const App = ()=> {
   const backgroundImage = 'images/logo512.png'
-  const SidebarHeader = 'Job Request';
+  const SidebarHeader = {
+    fullName: 'Job Request',
+    shortName: 'JSR'
+  };
   const menuItems = [
     {name: 'Home', to: '/', icon: 'icons/home.svg', subMenuItems: [] },
     {name: 'About', to: '/about', icon: 'icons/about.svg', subMenuItems: [] },
