@@ -7,15 +7,15 @@ import MainView from './components/MainView/Services/MainView'
 
 
 const App = ()=> {
-  const backgroundImage = 'images/logo512.png'
-  const SidebarHeader = {
+  const backgroundImage = 'images/tool.jpg'
+  const sidebarHeader = {
     fullName: 'Job Request',
     shortName: 'JSR'
   };
   const menuItems = [
     {name: 'Home', to: '/', icon: 'icons/home.svg', subMenuItems: [] },
-    {name: 'About', to: '/about', icon: 'icons/about.svg', subMenuItems: [] },
-    {name: 'Destinations', to: '/destinations', icon: 'icons/destinations.svg', 
+    {name: 'แจ้งงาน IT', to: '/about', icon: 'icons/about.svg', subMenuItems: [] },
+    {name: 'แจ้งงาน Marketing', to: '/destinations', icon: 'icons/destinations.svg', 
       subMenuItems: [
         { name: 'Canada', to: './canada'},
         { name: 'Brazil', to: './brazil'},
@@ -24,9 +24,9 @@ const App = ()=> {
         { name: 'Kenya', to: './kenya'},
         { name: 'Moldova', to: './moldova'},
       ] },
-    {name: 'Blog', to: '/blog', icon: 'icons/blog.svg', subMenuItems: [] },
-    {name: 'Services', to: '/services', icon: 'icons/services.svg', subMenuItems: [] },
-    {name: 'Contacts', to: '/contacts', icon: 'icons/contacts.svg', subMenuItems: [] }
+    {name: 'จัดการคลัง', to: '/blog', icon: 'icons/blog.svg', subMenuItems: [] },
+    {name: 'จัดการงานส่วน IT', to: '/services', icon: 'icons/services.svg', subMenuItems: [] },
+    {name: 'TAR', to: '/contacts', icon: 'icons/contacts.svg', subMenuItems: [] }
 ];
 
   const fonts = {
@@ -38,7 +38,7 @@ const App = ()=> {
     <s.App>
       <Sidebar 
       backgroundImage={backgroundImage}
-      SidebarHeader={SidebarHeader}
+      sidebarHeader={sidebarHeader}
       menuItems={menuItems}
       fonts={fonts}
       />
